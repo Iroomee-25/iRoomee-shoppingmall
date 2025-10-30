@@ -31,9 +31,8 @@ import { useEffect, useState } from "react";
  */
 export function useClerkSupabaseClient() {
   const { getToken, isLoaded } = useAuth();
-  const [supabase, setSupabase] = useState<ReturnType<
-    typeof createClient
-  > | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [supabase, setSupabase] = useState<any>(null);
 
   useEffect(() => {
     console.group("🔧 Clerk Supabase Client 초기화");

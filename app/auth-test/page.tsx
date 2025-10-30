@@ -107,7 +107,7 @@ export default function AuthTestPage() {
 
         console.log("사용자 이름:", userName);
 
-        const { data: newUser, error: createError } = await supabase
+        const { data: newUser, error: createError } = await (supabase as any)
           .from("users")
           .insert({
             clerk_id: user.id,
@@ -122,10 +122,10 @@ export default function AuthTestPage() {
         }
 
         console.log("✅ 사용자 생성 완료:", newUser);
-        setUserData(newUser);
+        setUserData(newUser as UserData);
       } else {
         console.log("✅ 기존 사용자 데이터 조회 완료:", data);
-        setUserData(data);
+        setUserData(data as UserData);
       }
     } catch (err) {
       console.error("❌ 사용자 데이터 조회/생성 실패:", err);
@@ -159,7 +159,7 @@ export default function AuthTestPage() {
 
       console.log("📝 새 이름:", newName.trim());
 
-      const { data, error: updateError } = await supabase
+      const { data, error: updateError } = await (supabase as any)
         .from("users")
         .update({ name: newName.trim() })
         .eq("clerk_id", user.id)
@@ -172,7 +172,7 @@ export default function AuthTestPage() {
       }
 
       console.log("✅ 이름 업데이트 완료:", data);
-      setUserData(data);
+      setUserData(data as UserData);
       setEditingName(false);
       setNewName("");
     } catch (err) {
